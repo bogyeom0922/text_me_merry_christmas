@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>아이디찾기</title>
+  <link rel="stylesheet" href="/signup2.css" />
+</head>
+<body>
+   <div style="position:absolute; top: 20px; right: 5px"><img src="image\logo2.png" width="500px" height="300px"></div>
+    <div id="sform">
+      <form method="post">
+        <li><label for="email"><b>이름 </b><em> * </em> </label>
+          <input id="input1" type="text" name="name" size="44" autocomplete="on" required>
+        </li>
+        <br>
+
+        <button onclick="confirmModal()" type="submit"><b>아이디찾기</b></button>
+        <script>
+          function confirmModal() {
+            window.confirm('당신의 아이디는.');
+          }
+        </script>
+      </form>
+    </div>
+</body>
+</html>
