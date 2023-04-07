@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> 회원가입</title>
+    <link rel="stylesheet" href="/signup2.css" />
+
+</head>
+
+<body>
+  <div style="position:absolute; top: 1px; right: 135px;"><img src="image\logo2.png" width="500px" height="300px"></div>
+  <div style="margin-top: 150px; margin-left: 30px; line-height: 280%;">
+      <form method="post">
+        <tr>
+            <td>
+                <label for="name"><b>닉네임 </b><em> * </em> </label>
+                <input id="input1" type="text" name="name" size="44" required="required">
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <label for="user_id"><b>아이디 </b><em>*</em> </label>
+                <input type="text" id="input2" name="id" size="10" autocomplete="on" required>
+                <label for="password"><b>비밀번호</b><em>*</em> </label>
+                <input type="text" id="input2" name="password" size="16" autocomplete="on" required>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+            <legend><b> 상태메세지 </b></legend>
+                <style>
+                textarea{resize:none;}
+                </style>
+            <textarea id="textarea1" name="introduction" placeholder="㈆Б태메㉦ㅔⓩㅣ를 입력㉻㈆ㅔ요."></textarea>
+            </td>
+        </tr>
+        <div style="position:absolute; right: 350px;"><button onclick="confirmModal()"><b>회원가입</b></button></div>
+        <script>
+        function confirmModal() {
+            window.confirm("회원가입이 완료되었습니다.");
+        }
+        </script>
+      </form>
+      <div style="z-index:2; position:absolute; top: 155px; right: 20px"><img src="image\polaroid_profile.png" width="200x" height="250x"></div>
+    </div>
+
+    <div style="position:absolute; left: 525px; top: 420px;">
+        <input type="file" id="fileUpload" accept='image/*' />
+        <img id="previewImg" src="fileUpload" width="170" alt=""  style="z-index:1; position:absolute; left: 5px; top: -250px;"/>
+
+        <SCRIPT LANGUAGE="JavaScript">
+            const fileInput = document.getElementById("fileUpload");
+
+            const handleFiles = (e) => {
+            const selectedFile = [...fileInput.files];
+            const fileReader = new FileReader();
+
+            fileReader.readAsDataURL(selectedFile[0]);
+
+            fileReader.onload = function () {
+            document.getElementById("previewImg").src = fileReader.result;
+            };
+            };
+
+            fileInput.addEventListener("change", handleFiles);
+        </SCRIPT>
+    </div>
+</body>
+</html>
