@@ -1,0 +1,31 @@
+.login-wrap{
+            width: 100%;
+            margin:10px auto;
+            position: absolute;
+        }
+    .login-form{
+            position:absolute;
+            top:70%;
+            left:95%;
+            width:100%;
+            transform: translate(-60%, -250%);
+        }
+    .input1{
+            height: 35px;
+            background-color: #ddefe3;
+            border: 3px solid rgb(14, 149, 50);
+            border-radius: 20px;
+        }
+    .login-button{
+            height: 30px;
+            background-color: #c44545;
+            border-radius: 5px;
+        }
+    .button1{
+            height: 30px;
+            background-color: #c4454500;
+            border: 0px solid rgb(14, 149, 50);
+        }
+
+
+    hr { border : 0px; border-top: 5px dashed #b7b7b7; width: 90% }
