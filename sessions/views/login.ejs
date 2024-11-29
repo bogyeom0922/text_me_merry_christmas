@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../index.css">
+</head>
+<body onload="build()">
+    <!--로그인 폼 이미지, 텍스트-->
+    <div class="logo">
+        <img src="image/logo.png">
+    </div>
+        <!--눈사람 표지판 이미지-->
+        <div class="login-image">
+            <img src="image/login_snowman.png" width="900px">
+        </div>
+
+        <!--로그인 폼-->
+        <div class="login-form">
+            <form method="post">
+                <p>
+                    <strong>아이디 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                    <input id="input4" type="text" name="id" size="10" required>
+                </p>
+                <p>
+                    <strong>비밀번호&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                    <input id="input4" type="password" name="password" size="10" required>
+                </p>
+                <p>
+                    <input id="login-button" type="submit" value="🔑 로그인">
+                    <a href="/signup" onClick="window.open(this.href, '', 'width=730px, height=500px, left= 270px, top=120px '); return false;"><button>회원가입</button></a>
+                    <a href="/findid" onClick="window.open(this.href, '', 'width=500px, height=380px, left= 270px, top=120px '); return false;"><button>아이디찾기</button></a>
+                    <a href="/findpw" onClick="window.open(this.href, '', 'width=500px, height=380px, left= 270px, top=120px '); return false;"><button>비밀번호찾기</button></a>
+                    <script>
+                        function confirmModal() {
+                            window.confirm("비밀번호가 메일로 전송되었습니다.");
+                        }
+                    </script>
+                </p>
+            </form>
+        </div>
+</body>
+</html>

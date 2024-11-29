@@ -5,12 +5,9 @@ var cookieParser = require('cookie-parser');
 const mysql = require('mysql');
 const path = require('path');
 let db=null;
-const fs=require('fs');
+var fs=require('fs');
 var ejs = require('ejs');
 const { response } = require('express');
-const session = require('express-session');
-const crypto = require('crypto');
-const FileStore = require('session-file-store')(session); 
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookieParser());
@@ -18,12 +15,14 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 const con = mysql.createConnection({
+  host : 'localhost',
   user : 'root',
-  password : '0922',
+  password : '0922', 
   database : 'textmechristmas'
 });
 
 app.use(express.static('public'));
+
 
 app.get('/index.css', function(req, res) {
   fs.sendFile(__dirname, 'index.css');
@@ -37,87 +36,7 @@ app.get('/login.css', function(req, res) {
   res.sendFile(__dirname, 'login.css');
 });
 
-// ejs 설정 4
-app.set('views', __dirname + '\\views');
-app.set('view engine','ejs');
-
-// 정제 (미들웨어) 5
-app.use(bodyParser.urlencoded({extended:false}));
-
-// 세션 (미들웨어) 6
-app.use(session({
-    secret: 'blackzat', // 데이터를 암호화 하기 위해 필요한 옵션
-    resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
-    saveUninitialized: true, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
-    store : new FileStore() // 세션이 데이터를 저장하는 곳
-}));
-
-app.get('/',(req,res)=>{
-  console.log('메인페이지 작동');
-  console.log(req.session);
-  if(req.session.is_logined == true){
-      res.render('index',{
-          is_logined : req.session.is_logined,
-          name : req.session.name
-      });
-  }else{
-      res.render('index',{
-          is_logined : false
-      });
-  }
-});
-
-app.get('/login',(req,res)=>{
-  console.log('로그인 작동');
-  res.render('login');
-});
-
-app.post('/login',(req,res)=>{
-  const body = req.body;
-  const id = body.id;
-  const password = body.password;
-
-  con.query('select * from user where id=?',[id],(err,data)=>{
-      // 로그인 확인
-      console.log(data[0]);
-      console.log(id);
-      console.log(data[0].id);
-      console.log(data[0].password);
-      console.log(id == data[0].id);
-      console.log(password == data[0].password);
-      if(id == data[0].id || password == data[0].password){
-          console.log('로그인 성공');
-          res.redirect('/index')
-          // 세션에 추가
-          req.session.is_logined = true;
-          req.session.name = data.name;
-          req.session.id = data.id;
-          req.session.password = data.password;
-          req.session.save(function(){ // 세션 스토어에 적용하는 작업
-              res.render('index',{ // 정보전달
-                  name : data[0].name,
-                  id : data[0].id,
-                  is_logined : true
-              });
-          });
-      }else{
-          console.log('로그인 실패');
-          res.render('login');
-      }
-  });
-  
-});
-
-// 로그아웃
-app.get('/logout',(req,res)=>{
-  console.log('로그아웃 성공');
-  req.session.destroy(function(err){
-      // 세션 파괴후 할 것들
-      res.redirect('/login');
-  });
-
-});
-
+app.listen(8000);
 
 app.get('/index',(req,res)=>{
   fs.readFile('index.html','utf8', function(error, data){
@@ -229,22 +148,18 @@ app.get('/mypage',(req,res)=>{
   res.sendFile(path.join(__dirname, 'mypage.html'));
 });
 
-
 app.get('/setting',(req,res)=>{
   res.sendFile(path.join(__dirname, 'setting.html'));
 });
 
-app.post('/setting', function(req, res) {
-  var body = req.body;
-  con.query('UPDATE user SET introduction=? WHERE id="bogyeom"',
-  [body.intro], function() {
-    res.redirect('/setting');
+app.get('/login.html',(req,res)=>{
+  fs.readFile('login.html', 'utf8', function(error, data) {
+    con.query('SELECT * FROM user', function (error, results) {
+      res.send(ejs.render(data, {
+        data:results
+      }));
+    });
   });
-});
-
-
-app.get('/login',(req,res)=>{
-  res.sendFile(path.join(__dirname, 'login.html'));
 });
 
 app.get('/signup',function(req,res) {
@@ -255,8 +170,8 @@ app.get('/signup',function(req,res) {
 
 app.post('/signup', function(req, res) {
   var body = req.body;
-  con.query('INSERT INTO user VALUES (?,?,?,?)', [
-    body.id, body.password, body.name, body.introduction
+  con.query('INSERT INTO user VALUES (?,?,?,?,?,?)', [
+    body.id, body.password, body.name, body.introduction, body.question, body.answer
   ], function() {
     res.redirect('/');
   });
@@ -331,8 +246,4 @@ app.post('/wish_view/:id', function(req, res) {
   [body.wish_contents, req.params.id], function() {
     res.redirect('/');
   });
-});
-
-app.listen(8000,()=>{
-  console.log('3000 port running...');
 });
