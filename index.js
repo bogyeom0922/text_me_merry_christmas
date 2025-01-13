@@ -116,7 +116,7 @@ app.get('/view/:from_name', function (req, res) {
 });
 
 app.post('/view/:from_name', function (req, res) {
-    var body = req.body;
+    const body = req.body;
     con.query('UPDATE card SET content=? WHERE from_name=?',
         [body.content, req.params.from_name], function (error) {
             if (error) {
@@ -127,8 +127,8 @@ app.post('/view/:from_name', function (req, res) {
         });
 });
 
-app.get('/card1', function (req, res) {
-    fs.readFile('card1.html', 'utf8', function (error, data) {
+app.get('/card/:type', function (req, res) {
+    fs.readFile(`card${req.params.type}.html`, 'utf8', function (error, data) {
         if (error) {
             console.error(error);
             return res.status(500).send("File Read Error");
@@ -137,79 +137,12 @@ app.get('/card1', function (req, res) {
     });
 });
 
-app.post('/card1', function (req, res) {
-    var body = req.body;
-    con.query('INSERT INTO card VALUES (?,?,?,1)', [
-        body.from_name, body.to_name, body.content, body.card
-    ], function (error) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("Database Insert Error");
-        }
-        res.redirect('/index');
-    });
-});
+app.post('/card/:type', function (req, res) {
+    const body = req.body;
+    const cardType = req.params.type;
 
-app.get('/card2', function (req, res) {
-    fs.readFile('card2.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-        res.send(data);
-    });
-});
-
-app.post('/card2', function (req, res) {
-    var body = req.body;
-    con.query('INSERT INTO card VALUES (?,?,?,2)', [
-        body.from_name, body.to_name, body.content, body.card
-    ], function (error) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("Database Insert Error");
-        }
-        res.redirect('/index');
-    });
-});
-
-app.get('/card3', function (req, res) {
-    fs.readFile('card3.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-        res.send(data);
-    });
-});
-
-app.post('/card3', function (req, res) {
-    var body = req.body;
-    con.query('INSERT INTO card VALUES (?,?,?,3)', [
-        body.from_name, body.to_name, body.content, body.card
-    ], function (error) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("Database Insert Error");
-        }
-        res.redirect('/index');
-    });
-});
-
-app.get('/card4', function (req, res) {
-    fs.readFile('card4.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-        res.send(data);
-    });
-});
-
-app.post('/card4', function (req, res) {
-    var body = req.body;
-    con.query('INSERT INTO card VALUES (?,?,?,4)', [
-        body.from_name, body.to_name, body.content, body.card
+    con.query('INSERT INTO card (from_name, to_name, content, card_type) VALUES (?, ?, ?, ?)', [
+        body.from_name, body.to_name, body.content, cardType
     ], function (error) {
         if (error) {
             console.error(error);
@@ -264,7 +197,7 @@ app.get('/signup', function (req, res) {
 });
 
 app.post('/signup', function (req, res) {
-    var body = req.body;
+    const body = req.body;
     con.query('INSERT INTO user VALUES (?,?,?,?,?,?)', [
         body.id, body.password, body.name, body.introduction, body.question, body.answer
     ], function (error) {
@@ -333,7 +266,7 @@ app.get('/wish', (req, res) => {
 app.post('/create', (req, res) => {
     const sql = "insert into textmechristmas.wish set ? ";
     console.log('완료');
-    con.query(sql, req.body, function (err, result, fields) {
+    con.query(sql, req.body, function (err, result) {
         if (err) {
             console.error(err);
             return res.status(500).send("Database Insert Error");
@@ -381,7 +314,7 @@ app.get('/wish_view/:id', function (req, res) {
 });
 
 app.post('/wish_view/:id', function (req, res) {
-    var body = req.body;
+    const body = req.body;
     con.query('UPDATE wish SET wish_contents=? WHERE id=?',
         [body.wish_contents, req.params.id], function (error) {
             if (error) {
