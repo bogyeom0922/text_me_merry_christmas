@@ -25,17 +25,16 @@ const con = mysql.createConnection({
 
 app.use(express.static('public'));
 
-
 app.get('/index.css', function (req, res) {
-    fs.sendFile(__dirname, 'index.css');
+    res.sendFile(path.join(__dirname, 'index.css'));
 });
 
 app.get('/signup2.css', function (req, res) {
-    res.sendFile(__dirname, 'sign2.css');
+    res.sendFile(path.join(__dirname, 'sign2.css'));
 });
 
 app.get('/login.css', function (req, res) {
-    res.sendFile(__dirname, 'login.css');
+    res.sendFile(path.join(__dirname, 'login.css'));
 });
 
 app.listen(8000);
