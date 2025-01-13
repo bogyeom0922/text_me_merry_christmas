@@ -1,19 +1,21 @@
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
+
+app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
+
 const cookieParser = require('cookie-parser');
 const mysql = require('mysql');
 const path = require('path');
 const fs = require('fs');
 const ejs = require('ejs');
-const {urlencoded} = require("body-parser");
+require('dotenv').config();
 
-app.use(urlencoded({extended: true}));
 app.use(cookieParser());
-app.engine('html', require('ejs').renderFile);
+app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 
-require('dotenv').config();
 const con = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -22,6 +24,63 @@ const con = mysql.createConnection({
 });
 
 app.use(express.static('public'));
+
+app.listen(8000);
+
+// 템플릿
+const sendFileResponse = (res, fileName) => {
+    res.sendFile(path.join(__dirname, fileName), (error) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).send("File Send Error");
+        }
+    });
+};
+
+const handleError = (res, error, errorMessage) => {
+    console.error(error);
+    res.status(500).send(errorMessage);
+};
+
+const executeQuery = (query, params = []) => {
+    return new Promise((resolve, reject) => {
+        con.query(query, params, (error, results) => {
+            if (error) {
+                return reject(error);
+            }
+            resolve(results);
+        });
+    });
+};
+
+const readFileAsync = (filePath) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(filePath, 'utf8', (error, data) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+};
+
+const renderQueryResult = (res, template, query, params = []) => {
+    executeQuery(query, params)
+        .then((results) => {
+            return readFileAsync(template);
+        })
+        .then((data) => {
+            res.send(ejs.render(data, {data: results}));
+        })
+        .catch((error) => {
+            handleError(res, error, "Database Query Error");
+        });
+};
+
+app.get('/index', (req, res) => {
+    renderQueryResult(res, 'index.html', 'SELECT * from wish');
+});
 
 app.get('/index.css', function (req, res) {
     res.sendFile(path.join(__dirname, 'index.css'), (error) => {
@@ -32,87 +91,8 @@ app.get('/index.css', function (req, res) {
     });
 });
 
-app.get('/signup2.css', function (req, res) {
-    res.sendFile(path.join(__dirname, 'sign2.css'), (error) => {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Send Error");
-        }
-    });
-});
-
-app.get('/login.css', function (req, res) {
-    res.sendFile(path.join(__dirname, 'login.css'), (error) => {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Send Error");
-        }
-    });
-});
-
-app.listen(8000);
-
-app.get('/index', (req, res) => {
-    fs.readFile('index.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-        con.query('SELECT * from wish', function (error, results) {
-            if (error) {
-                console.error(error);
-                return res.status(500).send("Database Query Error");
-            }
-            res.send(ejs.render(data, {data: results}));
-        });
-    });
-});
-
-app.get('/sendcard', (req, res) => {
-    res.sendFile(path.join(__dirname, 'sendcard.html'), (error) => {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Send Error");
-        }
-    });
-});
-
-app.get('/list', (req, res) => {
-    fs.readFile('list.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-        con.query('SELECT * FROM card', function (error, results) {
-            if (error) {
-                console.error(error);
-                return res.status(500).send("Database Query Error");
-            }
-            res.send(ejs.render(data, {data: results}));
-        });
-    });
-});
-
-app.get('/view/:from_name', function (req, res) {
-    fs.readFile('view.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-
-        con.query('SELECT * FROM card WHERE from_name = ?', [
-            req.params.from_name
-        ], function (error, result) {
-            if (error) {
-                console.error(error);
-                return res.status(500).send("Database Query Error");
-            }
-            if (result.length === 0) {
-                return res.status(404).send("No card found for the specified name");
-            }
-            res.send(ejs.render(data, {data: result[0]}));
-        });
-    });
+app.get('/view/:from_name', (req, res) => {
+    renderQueryResult(res, 'view.html', 'SELECT * FROM card WHERE from_name = ?', [req.params.from_name]);
 });
 
 app.post('/view/:from_name', function (req, res) {
@@ -125,6 +105,57 @@ app.post('/view/:from_name', function (req, res) {
             }
             res.redirect('/');
         });
+});
+
+app.get('/signup', function (req, res) {
+    sendFileResponse(res, 'signup.html');
+});
+
+app.post('/signup', function (req, res) {
+    const body = req.body;
+    con.query('INSERT INTO user VALUES (?,?,?,?,?,?)', [
+        body.id, body.password, body.name, body.introduction, body.question, body.answer
+    ], function (error) {
+        if (error) {
+            console.error(error);
+            return res.status(500).send("Database Insert Error");
+        }
+        res.redirect('/');
+    });
+});
+
+app.get('/signup2.css', function (req, res) {
+    res.sendFile(path.join(__dirname, 'sign2.css'), (error) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).send("File Send Error");
+        }
+    });
+});
+
+app.get('/findid', function (req, res) {
+    sendFileResponse(res, 'findid.html');
+});
+
+app.get('/findpw', function (req, res) {
+    sendFileResponse(res, 'findpw.html');
+});
+
+app.get('/login', function (req, res) {
+    sendFileResponse(res, 'login.html');
+});
+
+app.get('/login.css', function (req, res) {
+    res.sendFile(path.join(__dirname, 'login.css'), (error) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).send("File Send Error");
+        }
+    });
+});
+
+app.get('/sendcard', function (req, res) {
+    sendFileResponse(res, 'sendcard.html');
 });
 
 app.get('/card/:type', function (req, res) {
@@ -152,79 +183,16 @@ app.post('/card/:type', function (req, res) {
     });
 });
 
+app.get('/list', (req, res) => {
+    renderQueryResult(res, 'list.html', 'SELECT * FROM card');
+});
+
 app.get('/mypage', (req, res) => {
-    res.sendFile(path.join(__dirname, 'mypage.html'), (error) => {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Send Error");
-        }
-    });
+    sendFileResponse(res, 'mypage.html');
 });
 
 app.get('/setting', (req, res) => {
-    res.sendFile(path.join(__dirname, 'setting.html'), (error) => {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Send Error");
-        }
-    });
-});
-
-app.get('/login.html', (req, res) => {
-    fs.readFile('login.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-        con.query('SELECT * FROM user', function (error, results) {
-            if (error) {
-                console.error(error);
-                return res.status(500).send("Database Query Error");
-            }
-            res.send(ejs.render(data, {data: results}));
-        });
-    });
-});
-
-app.get('/signup', function (req, res) {
-    fs.readFile('signup.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-        res.send(data);
-    });
-});
-
-app.post('/signup', function (req, res) {
-    const body = req.body;
-    con.query('INSERT INTO user VALUES (?,?,?,?,?,?)', [
-        body.id, body.password, body.name, body.introduction, body.question, body.answer
-    ], function (error) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("Database Insert Error");
-        }
-        res.redirect('/');
-    });
-});
-
-app.get('/findid', function (req, res) {
-    res.sendFile(path.join(__dirname, 'findid.html'), (error) => {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Send Error");
-        }
-    });
-});
-
-app.get('/findpw', function (req, res) {
-    res.sendFile(path.join(__dirname, 'findpw.html'), (error) => {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Send Error");
-        }
-    });
+    sendFileResponse(res, 'setting.html');
 });
 
 app.get('/game_main', function (req, res) {
@@ -277,40 +245,11 @@ app.post('/create', (req, res) => {
 });
 
 app.get('/wish_list', (req, res) => {
-    fs.readFile('wish_list.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-        con.query('SELECT * FROM card', function (error, results) {
-            if (error) {
-                console.error(error);
-                return res.status(500).send("Database Query Error");
-            }
-            res.send(ejs.render(data, {data: results}));
-        });
-    });
+    renderQueryResult(res, 'wish_list.html', 'SELECT * FROM card');
 });
 
-app.get('/wish_view/:id', function (req, res) {
-    fs.readFile('wish_view.html', 'utf8', function (error, data) {
-        if (error) {
-            console.error(error);
-            return res.status(500).send("File Read Error");
-        }
-        con.query('SELECT * FROM wish WHERE id = ?', [
-            req.params.id
-        ], function (error, result) {
-            if (error) {
-                console.error(error);
-                return res.status(500).send("Database Query Error");
-            }
-            if (result.length === 0) {
-                return res.status(404).send("No wish found for the specified ID");
-            }
-            res.send(ejs.render(data, {data: result[0]}));
-        });
-    });
+app.get('/wish_view/:id', (req, res) => {
+    renderQueryResult(res, 'wish_view.html', 'SELECT * FROM wish WHERE id = ?', [req.params.id]);
 });
 
 app.post('/wish_view/:id', function (req, res) {
