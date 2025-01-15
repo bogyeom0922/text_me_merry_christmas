@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node src/index"
   },
   "dependencies": {
     "body-parser": "^1.20.1",
@@ -17,6 +17,7 @@
     "express-session": "^1.17.3",
     "http": "^0.0.1-security",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
     "serve-static": "^1.15.0"
