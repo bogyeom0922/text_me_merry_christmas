@@ -1,21 +1,28 @@
-const { executeQuery } = require('../services/dbService');
+const Card = require('../models/card');
 
+// 카드 작성 페이지 렌더링
 exports.renderCardPage = (req, res) => {
     const { type } = req.params;
     res.render(`card${type}`);
 };
 
-exports.handleCreateCard = (req, res) => {
+// 카드 생성 처리
+exports.handleCreateCard = async (req, res) => {
     const { from_name, to_name, content } = req.body;
     const cardType = req.params.type;
-    const query = 'INSERT INTO card (from_name, to_name, content, card_type) VALUES (?, ?, ?, ?)';
-    const params = [from_name, to_name, content, cardType];
 
-    executeQuery(query, params)
-        .then(() => {
-            res.redirect('/index');
-        })
-        .catch(error => {
-            res.status(500).send('Error creating card');
+    try {
+        const newCard = new Card({
+            from_name,
+            to_name,
+            content,
+            card_type: cardType
         });
+
+        await newCard.save(); // MongoDB에 저장
+        res.redirect('/index');
+    } catch (error) {
+        console.error('카드 생성 오류:', error);
+        res.status(500).send('Error creating card');
+    }
 };

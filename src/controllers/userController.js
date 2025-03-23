@@ -1,35 +1,37 @@
-const {executeQuery} = require('../services/dbService');
+const User = require('../models/user'); // 새로 만든 Mongoose 모델
 
-exports.renderSignupPage = (req, res) => {
-    res.render('user/signup');
-};
+exports.handleSignup = async (req, res) => {
+    const { id, password, name, introduction } = req.body;
 
-exports.renderLoginPage = (req, res) => {
-    res.render('user/login');
-};
-
-exports.handleSignup = (req, res) => {
-    const {id, password, name, introduction} = req.body;
     if (!id || !password || !name || !introduction) {
         return res.status(400).send('Missing required fields');
     }
 
     const profileImage = req.file ? '/uploads/' + req.file.filename : null;
+
     console.log('id:', id, 'password:', password, 'name:', name, 'introduction:', introduction, 'profileImage:', profileImage);
 
-    const query = 'INSERT INTO user (id, password, name, introduction, profile_image) VALUES (?, ?, ?, ?, ?)';
-    const params = [id, password, name, introduction, profileImage];
+    try {
+        // 중복 이메일 확인
+        const existingUser = await User.findOne({ email: id });
+        if (existingUser) {
+            return res.status(400).send('Duplicate entry for user ID');
+        }
 
-    executeQuery(query, params)
-        .then(() => {
-            res.redirect('/user/login');
-        })
-        .catch(error => {
-            console.error('error:', error);
-            if (error.code === 'ER_DUP_ENTRY') {
-                res.status(400).send('Duplicate entry for user ID');
-            } else {
-                res.status(500).send('Error handling signup');
-            }
+        // 새 유저 생성
+        const newUser = new User({
+            email: id,
+            password,
+            nickname: name,
+            introduction,
+            profileImage
         });
+
+        await newUser.save(); // 저장
+
+        res.redirect('/user/login');
+    } catch (error) {
+        console.error('Signup Error:', error);
+        res.status(500).send('Error handling signup');
+    }
 };

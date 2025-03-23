@@ -1,43 +1,26 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <link rel="stylesheet" href="../index.css">-->
+    <title>로그인</title>
 </head>
-<!--<body onload="build()">-->
-<!--<div class="login-form">-->
-<!--    <form method="post">-->
-<!--        <p>-->
-<!--            <strong>아이디 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>-->
-<!--            <input id="input4" type="text" name="id" size="10" required>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <strong>비밀번호&nbsp;&nbsp;&nbsp;&nbsp;</strong>-->
-<!--            <input id="input4" type="password" name="password" size="10" required>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <input id="login-button" type="submit" value="🔑 로그인">-->
-<!--            <a href="/signup"-->
-<!--               onClick="window.open(this.href, '', 'width=730px, height=500px, left= 270px, top=120px '); return false;">-->
-<!--                <button>회원가입</button>-->
-<!--            </a>-->
-<!--            <a href="/findid"-->
-<!--               onClick="window.open(this.href, '', 'width=500px, height=380px, left= 270px, top=120px '); return false;">-->
-<!--                <button>아이디찾기</button>-->
-<!--            </a>-->
-<!--            <a href="/findpw"-->
-<!--               onClick="window.open(this.href, '', 'width=500px, height=380px, left= 270px, top=120px '); return false;">-->
-<!--                <button>비밀번호찾기</button>-->
-<!--            </a>-->
-<!--            <script>-->
-<!--                function confirmModal() {-->
-<!--                    window.confirm("비밀번호가 메일로 전송되었습니다.");-->
-<!--                }-->
-<!--            </script>-->
-<!--        </p>-->
-<!--    </form>-->
-<!--</div>-->
+<body>
+<h1>로그인</h1>
+
+<form action="/user/login" method="POST">
+    <input type="text" name="email" placeholder="이메일" required />
+    <input type="password" name="password" placeholder="비밀번호" required />
+    <button type="submit">로그인</button>
+</form>
+
+<hr />
+
+<h3>소셜 로그인</h3>
+<a href="/auth/kakao">
+    <img
+            src="https://developers.kakao.com/assets/img/about/logos/kakaologin/kr/kakao_account_login_btn_medium_narrow.png"
+            alt="카카오 로그인"
+    />
+</a>
 </body>
 </html>
