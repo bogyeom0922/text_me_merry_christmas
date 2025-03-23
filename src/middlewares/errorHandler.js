@@ -1,4 +1,6 @@
-exports.errorHandler = (err, req, res, next) => {
-    console.error(err);
-    res.status(500).send('Something went wrong');
+const errorHandler = (err, req, res, next) => {
+    console.error(err.stack); // 에러 로그 출력
+    res.status(500).json({ message: 'Internal Server Error' });
 };
+
+module.exports = { errorHandler };

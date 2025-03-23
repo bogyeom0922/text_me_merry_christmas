@@ -1,12 +1,14 @@
-const mysql = require('mysql');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
-const pool = mysql.createConnection({
-    connectionLimit: 10,
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log('✅ MongoDB Atlas 연결 성공');
+    } catch (error) {
+        console.error('❌ MongoDB Atlas 연결 실패:', error);
+        process.exit(1);
+    }
+};
 
-module.exports = pool;
+module.exports = connectDB;
