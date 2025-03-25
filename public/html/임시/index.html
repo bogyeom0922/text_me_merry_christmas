@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>card list</title>
+        <title>main</title>
         <link rel="stylesheet" href="/css/index.css" />
         <SCRIPT LANGUAGE="JavaScript">
             function theDate() {
@@ -110,6 +110,16 @@
                 document.image_2.src=path;
             }    
         </SCRIPT> 
+        <script>
+            var audio = new Audio('We Wish You A Merry Christmas.mp3');
+        
+            /*추가된 부분: 종료되면 처음부터 다시 재생*/
+            audio.addEventListener('ended', function() { 
+                this.currentTime = 0;
+                this.play();
+            }, false);
+            
+        </script>
     </head>
 
     <body onload="build()">
@@ -196,22 +206,13 @@
                     </tr>
                 </table>
             </div>
-            
+            <div class="music_button">
+                <input id="input3" type="button" onclick="audio.play();" value="BGM 재생"> &nbsp;
+                <input id="input3" type="button" onclick="audio.pause();" value="일시정지">
+            </div>
         </div>
 
-        <!--메인페이지-->
-        <div class="position2 box3">
-            <div class="list_title">누구한테 카드가 왔을까요 ?</div>
-            <div class="cardtable"> 
-                <% data.forEach(function (item, index) { %>
-                    <table width="500">
-                    <tr>
-                        <td width="70%"><%= item.from_name %></td>
-                        <td width="30%"><a href="/view/<%= item.from_name %>">view</a><br></td>
-                    </tr>
-                </table>
-                    <% }); %>
-            </div>
+
         </div>
 
         <!--스프링-->
@@ -221,16 +222,62 @@
         <div class="position4_3"><img src="image\spring.png"></div>
 
         <!--메뉴-->
-        <a href="/index"><div class="position2_1 index1">홈</div></a>
+        <a href="/index"><div class="position2 index1">홈</div></a>
         <a href="/sendcard"><div class="position2_1 index2">카드보내기</div></a>
         <a href="/wish"><div class="position2_1 index3">소원등록</div></a>
         <a href="/game"><div class="position2_1 index4">미니게임</div></a>
-        <a href="/mypage"><div class="position2 index5">마이페이지</div></a>
+        <a href="/mypage"><div class="position2_1 index5">마이페이지</div></a>
         <a href="/setting"><div class="position2_1 index6">설정</div></a>
 
         <!--바닥 장식-->
         <div class="position3">
             <img src="image\bottom.png" width="134%" height="140">
         </div>       
+
+        <script>
+            var div2 = document.getElementsByClassName("div2");
+
+            function handleClick(event) {
+                console.log(event.target);
+                // console.log(this);
+                // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+                console.log(event.target.classList);
+
+                if (event.target.classList[1] === "clicked") {
+                    event.target.classList.remove("clicked");
+                } else {
+                for (var i = 0; i < div2.length; i++) {
+                    div2[i].classList.remove("clicked");
+                }
+
+                event.target.classList.add("clicked");
+                }
+            }
+
+            function init() {
+                for (var i = 0; i < div2.length; i++) {
+                    div2[i].addEventListener("click", handleClick);
+                }
+            }
+
+            init();
+
+            function imageurl(a) {
+                if (a == 1)
+                    var imageurl = "\image\treedeco_1.png";
+                else if (a == 2)
+                    var imageurl = "\image\treedeco_2.png";
+                else if (a == 3)
+                var imageurl = "\image\treedeco_3.png";
+                else if (a == 4)
+                var imageurl = "\image\treedeco_4.png";
+                else if (a == 5)
+                var imageurl = "\image\treedeco_5.png";
+                else if (a == 6)
+                var imageurl = "\image\treedeco_6.png";
+
+            }
+        </script>
     </body>
 </html>
