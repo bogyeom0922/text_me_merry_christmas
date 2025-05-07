@@ -20,7 +20,7 @@ exports.handleCreateCard = async (req, res) => {
         });
 
         await newCard.save();
-        res.redirect('/index');
+        res.redirect('/sendcard');
     } catch (error) {
         console.error('카드 생성 오류:', error);
         res.status(500).send('Error creating card');
