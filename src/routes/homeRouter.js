@@ -33,6 +33,4 @@ router.get('/mypage', (req, res) => {
     res.render('user/mypage', { user: req.session.user }); // 로그인 된 경우
 });
 
-router.get('/setting', (req, res) => res.render('user/setting'));
-
 module.exports = router;
