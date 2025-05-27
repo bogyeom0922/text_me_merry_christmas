@@ -3,15 +3,12 @@
         <img src="image\christmascard_1.png" width="100%">
     </div>
     <div class="wirte_card">
-        <form method="post">
+        <form method="post" action="/card">
             <div class="card_title">
-                <label>TO&nbsp;</label>
+                <label>TO</label>
                 <input type="text" name="to_name" placeholder="받는 사람을 입력하세요" required />
             </div>
-            <div class="card_writer">
-                <label>FROM&nbsp;</label>
-                <input type="text" name="from_name" placeholder="보내는 사람을 입력하세요" />
-            </div>
+            <input type="hidden" name="from_name" value="<%= user?.nickname %>" />
             <div class="card_text">
                 <textarea name="content" placeholder="카드를 작성해보세요 !"></textarea>
             </div>

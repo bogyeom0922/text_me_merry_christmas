@@ -1,0 +1,15 @@
+<h2>보낸 카드 목록</h2>
+
+<ul>
+  <% if (data.length === 0) { %>
+    <li>보낸 카드가 없습니다.</li>
+  <% } else { %>
+    <% data.forEach(card => { %>
+      <li>
+        <a href="/card/view/<%= card._id %>">
+          To: <%= card.to_name %> | 내용: <%= card.content %>
+        </a>
+      </li>
+    <% }) %>
+  <% } %>
+</ul>

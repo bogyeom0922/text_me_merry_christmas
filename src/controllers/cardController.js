@@ -5,7 +5,8 @@ exports.renderCardMenu = (req, res) => {
 };
 
 exports.renderCreatePage = (req, res) => {
-    res.render('card/create');
+    const user = req.user || req.session.user;
+    res.render('card/new', { user });
 };
 
 exports.handleCreateCard = async (req, res) => {
