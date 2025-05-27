@@ -1,0 +1,20 @@
+<div class="position2 box3">
+    <div class="card_background">
+        <img src="image\christmascard_1.png" width="100%">
+    </div>
+    <div class="wirte_card">
+        <form method="post" action="/card">
+            <div class="card_title">
+                <label>TO</label>
+                <input type="text" name="to_name" placeholder="받는 사람을 입력하세요" required />
+            </div>
+            <input type="hidden" name="from_name" value="<%= user?.nickname %>" />
+            <div class="card_text">
+                <textarea name="content" placeholder="카드를 작성해보세요 !"></textarea>
+            </div>
+            <div class="send_card_button">
+                <input type="submit" value="보내기" />
+            </div>
+        </form>
+    </div>
+</div>

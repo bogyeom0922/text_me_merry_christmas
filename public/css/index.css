@@ -1,183 +1,932 @@
 body {
     background-image: url('../image/background.png');
-    background-size : cover;
+    background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-DIV {border-radius: 40px;}
-.box1 {background-color: #c4cbb7ff; height:850px; width: 85%; margin-left: 7.5%; top: 120px; margin-bottom: 30px}
-.box2 {background-color: #e5e7d3ff; height:800px; width: 20%; margin-left: 9.5%; top: 150px; margin-bottom: 30px}
-.box3 {background-color: #e5e7d3ff; height:800px; width: 52%; margin-left: 31%; top: 150px; margin-bottom: 30px}
-.position1 {z-index: 1; position: absolute}
-.position2 {z-index: 3; position: absolute; background-color: #e5e7d3ff}
-.position2_1 {z-index: 2; position: absolute; background-color: #eaeaeaff}
-.position3 {z-index: 4; position: absolute; margin-top: 825px}
-.position4 {z-index: 5; position: absolute; height:20px; width: 51px; margin-left: 28%; top: 270px}
-.position4_1 {z-index: 5; position: absolute; height:20px; width: 51px; margin-left: 28%; top: 350px}
-.position4_2 {z-index: 5; position: absolute; height:20px; width: 51px; margin-left: 28%; top: 530px}
-.position4_3 {z-index: 5; position: absolute; height:20px; width: 51px; margin-left: 28%; top: 610px}
-.position5{ margin-top: 390px;}
-.index1{height:65px; width: 140px; margin-left: 82%; top: 175px; border-radius: 20px;
-        text-align: center; font-size: 19px; line-height : 65px; font-weight: bold;}
-.index2{height:65px; width: 140px; margin-left: 82%; top: 255px; border-radius: 20px;
-        text-align: center; font-size: 19px; line-height : 65px; font-weight: bold;}
-.index3{height:65px; width: 140px; margin-left: 82%; top: 335px; border-radius: 20px;
-        text-align: center; font-size: 19px; line-height : 65px; font-weight: bold;}
-.index4{height:65px; width: 140px; margin-left: 82%; top: 415px; border-radius: 20px;
-        text-align: center; font-size: 19px; line-height : 65px; font-weight: bold;}
-.index5{height:65px; width: 140px; margin-left: 82%; top: 495px; border-radius: 20px;
-        text-align: center; font-size: 19px; line-height : 65px; font-weight: bold;}
-.index6{height:65px; width: 140px; margin-left: 82%; top: 575px; border-radius: 20px;
-        text-align: center; font-size: 19px; line-height : 65px; font-weight: bold;}
-.logo {z-index: 8; position: absolute; top: 0px; left: 10px}
-.profile_background {z-index: 6; position: absolute; background-color: rgb(255, 255, 255); height:200px; width: 200px; left: 16.5%; top: 7%; border-radius: 0px;}
-.profile {z-index: 6; position: absolute; left: 23%; top: 7%; border-radius: 0px;}
-.introduction {z-index: 6; position: absolute; text-align: center; color: #38761d; white-space:normal; width:65%; font-size: 14px; margin-left: 50px; top: 280px; border-radius: 0px;}
-.music {background-color: white; margin-top: 80px; z-index: 6; position: absolute; text-align: center; white-space:normal; width:65%; font-size: 12px; margin-left: 45px; top: 265px; border-radius: 0px;}
-.d_day {z-index: 6; position: absolute; color: #941f1f; font-size: 18px; font-weight: 900; margin-left: 50px; top: 405px; border-radius: 0px;}
-.cal {border:1px solid #BDBDBD; text-align:center; width:70%; z-index: 6; position: absolute; margin-left: 42px; top: 470px; border-radius: 0px; letter-spacing: 1px;}
-.maintree{z-index:7; position: absolute; margin-left: 2%; top: 0px;}
-.participants{background-color: #f3f3f398; z-index:8; position: absolute; height:270px; width:185px; margin-left: 63%; top: 40px; line-height: 170%;
-              -ms-overflow-style: none; overflow-y: scroll; padding-top: 70px; padding-left: 45px; padding-bottom: 20px; color:#b3b3b3; font-size: 15px; font-weight: 600;}
-.participants::-webkit-scrollbar{display:none;}
-.participants_1 { z-index:9; position: absolute; height:40px; width:170px; margin-left: 68%; top: 70px; color:#999999; font-size: 17px; font-weight: 900;border-radius: 0px;}            
-.logout {z-index:9; position: absolute; margin-left: 79%; margin-top: 70px; color:rgba(255, 255, 255, 0.753); font-size: 20px; font-weight: bold;}
-/*보겸이*/
-.colorchange {z-index:9; position: absolute; margin-left: 11%; margin-top: 80px; color:#666666; font-size: 21px; font-weight: bold;}
-.bgmchange {z-index:9; position: absolute; margin-left: 11%; margin-top: 90px; color:#666666; font-size: 21px; font-weight: bold;}
-.bgmlist{background-color: #f0f0f0ff; position: absolute; height:260px; width: 300px; border-radius: 20px; margin-left: 11%; margin-top: 150px;
-        padding-top: 10px; padding-left: 30px; padding-right: 20px; padding-bottom: 20px; color:#666666; font-size: 19px; font-weight: 300;
-        -ms-overflow-style: none; overflow-y: scroll;  line-height:200%;}
-.bgmlist::-webkit-scrollbar{display:none;}
-.check_card {z-index:9; position: absolute; margin-left: 11%; margin-top: 520px; color:#666666; font-size: 21px; font-weight: bold;}
-.card {z-index:9; position: absolute; margin-left: 41%; margin-top: 500px;}
-.imgchange{z-index:9; position: absolute; margin-left: 11%; margin-top: 140px; color:#666666; font-size: 19px; font-weight: bold}
-.imgchange_1{z-index:9; position: absolute; margin-left: 30%; margin-top: 120px}
-.introchange{z-index:9; position: absolute; margin-left: 11%; margin-top: 420px; color:#666666; font-size: 19px; font-weight: bold}
-.button {border:#666666; color: #666666; padding: 15px 30px; text-align: center; text-decoration: none; display: inline-block; 
-        font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 5px; border-radius: 10%; font-weight: bold; }
-.b1{z-index:9; position: absolute; margin-left: 55%; margin-top: 130px;}
-.b2{z-index:9; position: absolute; margin-left: 68%; margin-top: 130px;}
-.b3{z-index:9; position: absolute; margin-left: 30%; margin-top: 620px;}
-.b4{z-index:9; position: absolute; margin-left: 43%; margin-top: 620px;}
-.t{z-index:9; position: absolute; margin-left: 30%; margin-top: 410px;}
-.card1{z-index:9; position: absolute; margin-left: 9%; margin-top: 140px}
-.card2{z-index:9; position: absolute; margin-left: 52%; margin-top: 140px}
-.card3{z-index:9; position: absolute; margin-left: 9%; margin-top: 470px}
-.card4{z-index:9; position: absolute; margin-left: 52%; margin-top: 470px}
-.box4{height:500px; width: 320px; margin-left: 10%; top: 160px; margin-bottom: 30px;
-     z-index: 4; position: absolute; background-color: rgb(241, 241, 241);}
-.box5{margin-left: 55%; top: 170px; margin-bottom: 30px; z-index: 4; position: absolute}
-.deco1{z-index:9; position: absolute; margin-left: 15%; margin-top: 200px}
-.deco2{z-index:9; position: absolute; margin-left: 33%; margin-top: 180px}
-.deco3{z-index:9; position: absolute; margin-left: 15%; margin-top: 375px}
-.deco4{z-index:9; position: absolute; margin-left: 32%; margin-top: 385px}
-.deco5{z-index:9; position: absolute; margin-left: 15%; margin-top: 530px}
-.deco6{z-index:9; position: absolute; margin-left: 33%; margin-top: 530px}
-.card_background{z-index:9; position: absolute; margin-left: 20px; margin-top: 10px}
-.view_background{z-index:9; position: absolute; margin-left: 50px; margin-top: 50px}
-.game{position: absolute; margin-left: 40px; margin-top: 130px}
-.game_message{position: absolute; margin-left: 240px; margin-top: 70px;color:#666666; font-size: 21px; font-weight: bold;}
-.cardtable{background-color: #f3f3f398; z-index:8; position: absolute; height:320px; width:500px; margin-left: 85px; top: 210px; line-height: 150%;
-           -ms-overflow-style: none; overflow-y: scroll; padding-top: 70px; padding-left: 70px; padding-bottom: 20px; color:#b3b3b3; font-size: 22px; font-weight: 600;}
-.cardtable::-webkit-scrollbar{display:none;}
-.view1{z-index:10; position: absolute; margin-left: 150px; margin-top: 180px;color:#666666; font-size: 30px; font-weight: bold;
-        padding: 40px; line-height: 200%; -ms-overflow-style: none; overflow-y: scroll; width:430px;}
-.view1::-webkit-scrollbar{display:none;}
-.list_title{z-index:9; position: absolute; margin-left: 13%; margin-top: 100px; color:#666666; font-size: 23px; font-weight: bold;}
-
-
-.wirte_card{z-index:10; position: absolute; margin-left: 150px; margin-top: 140px;}
-.card_title{margin-left: 15px; margin-top: 10px; color:#666666; font-size: 20px; font-weight: bold;}
-.card_writer{margin-left: 15px; margin-top: 15px; color:#666666; font-size: 20px; font-weight: bold}
-.card_text{margin-left: 15px; margin-top: 25px; color:#666666; font-size: 20px; font-weight: bold}
-.card_background2{z-index:9; position: absolute; margin-left: 80px; margin-top: 80px}
-.send_card_button{margin-left: 200px; margin-top: 25px;}
-.send_card_button2{margin-left: 130px; margin-top: 15px;}
-.music_button{position: absolute; left: 40px; top: 660px;}
-.b5{z-index:10; position: absolute; margin-left: 66%; margin-top: 590px;}
-.button2 {border:#666666; color: #666666; padding: 15px 30px; text-align: center; text-decoration: none; display: inline-block; 
-    font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 5px; border-radius: 10%; font-weight: bold; }
-.mini_game{z-index:10; position: absolute; margin-left: 50%; margin-top: 0%;}
-.login-image {
-        z-index: 8; position: absolute; left: 400px
+DIV {
+    border-radius: 40px;
 }
-.login-form{
+
+.box1 {
+    background-color: #c4cbb7ff;
+    height: 850px;
+    width: 85%;
+    margin-left: 7.5%;
+    top: 120px;
+    margin-bottom: 30px;
+}
+
+.box2 {
+    background-color: #e5e7d3ff;
+    height: 800px;
+    width: 20%;
+    margin-left: 9.5%;
+    top: 150px;
+    margin-bottom: 30px;
+}
+
+.box3 {
+    background-color: #e5e7d3ff;
+    height: 800px;
+    width: 52%;
+    margin-left: 31%;
+    top: 150px;
+    margin-bottom: 30px;
+}
+
+.position1 {
+    z-index: 1;
+    position: absolute;
+}
+
+.position2 {
+    z-index: 3;
+    position: absolute;
+    background-color: #e5e7d3ff;
+}
+
+.position2_1 {
+    z-index: 2;
+    position: absolute;
+    background-color: #eaeaeaff;
+}
+
+.position3 {
+    z-index: 4;
+    position: absolute;
+    margin-top: 825px;
+}
+
+.position4 {
+    z-index: 5;
+    position: absolute;
+    height: 20px;
+    width: 51px;
+    margin-left: 28%;
+    top: 270px;
+}
+
+.position4_1 {
+    z-index: 5;
+    position: absolute;
+    height: 20px;
+    width: 51px;
+    margin-left: 28%;
+    top: 350px;
+}
+
+.position4_2 {
+    z-index: 5;
+    position: absolute;
+    height: 20px;
+    width: 51px;
+    margin-left: 28%;
+    top: 530px;
+}
+
+.position4_3 {
+    z-index: 5;
+    position: absolute;
+    height: 20px;
+    width: 51px;
+    margin-left: 28%;
+    top: 610px;
+}
+
+.position5 {
+    margin-top: 390px;
+}
+
+.index1 {
+    height: 65px;
+    width: 140px;
+    margin-left: 82%;
+    top: 175px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 19px;
+    line-height: 65px;
+    font-weight: bold;
+}
+
+.index2 {
+    height: 65px;
+    width: 140px;
+    margin-left: 82%;
+    top: 255px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 19px;
+    line-height: 65px;
+    font-weight: bold;
+}
+
+.index3 {
+    height: 65px;
+    width: 140px;
+    margin-left: 82%;
+    top: 335px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 19px;
+    line-height: 65px;
+    font-weight: bold;
+}
+
+.index4 {
+    height: 65px;
+    width: 140px;
+    margin-left: 82%;
+    top: 415px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 19px;
+    line-height: 65px;
+    font-weight: bold;
+}
+
+.index5 {
+    height: 65px;
+    width: 140px;
+    margin-left: 82%;
+    top: 495px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 19px;
+    line-height: 65px;
+    font-weight: bold;
+}
+
+.index6 {
+    height: 65px;
+    width: 140px;
+    margin-left: 82%;
+    top: 575px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 19px;
+    line-height: 65px;
+    font-weight: bold;
+}
+
+.logo {
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+}
+
+.profile_background {
+    z-index: 6;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    height: 200px;
+    width: 200px;
+    left: 16.5%;
+    top: 7%;
+    border-radius: 0px;
+}
+
+.profile {
+    z-index: 6;
+    position: absolute;
+    left: 23%;
+    top: 7%;
+    border-radius: 0px;
+}
+
+.introduction {
+    z-index: 6;
+    position: absolute;
+    text-align: center;
+    color: #38761d;
+    white-space: normal;
+    width: 65%;
+    font-size: 14px;
+    margin-left: 50px;
+    top: 280px;
+    border-radius: 0px;
+}
+
+.music {
+    background-color: white;
+    margin-top: 80px;
+    z-index: 6;
+    position: absolute;
+    text-align: center;
+    white-space: normal;
+    width: 65%;
+    font-size: 12px;
+    margin-left: 45px;
+    top: 265px;
+    border-radius: 0px;
+}
+
+.d_day {
+    z-index: 6;
+    position: absolute;
+    color: #941f1f;
+    font-size: 18px;
+    font-weight: 900;
+    margin-left: 50px;
+    top: 405px;
+    border-radius: 0px;
+}
+
+.cal {
+    border: 1px solid #BDBDBD;
+    text-align: center;
+    width: 70%;
+    z-index: 6;
+    position: absolute;
+    margin-left: 42px;
+    top: 470px;
+    border-radius: 0px;
+    letter-spacing: 1px;
+}
+
+.maintree {
+    z-index: 7;
+    position: absolute;
+    margin-left: 2%;
+    top: 0px;
+}
+
+.participants {
+    background-color: #f3f3f398;
+    z-index: 8;
+    position: absolute;
+    height: 270px;
+    width: 185px;
+    margin-left: 63%;
+    top: 40px;
+    line-height: 170%;
+    -ms-overflow-style: none;
+    overflow-y: scroll;
+    padding-top: 70px;
+    padding-left: 45px;
+    padding-bottom: 20px;
+    color: #b3b3b3;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.participants::-webkit-scrollbar {
+    display: none;
+}
+
+.participants_1 {
+    z-index: 9;
+    position: absolute;
+    height: 40px;
+    width: 170px;
+    margin-left: 68%;
+    top: 70px;
+    color: #999999;
+    font-size: 17px;
+    font-weight: 900;
+    border-radius: 0px;
+}
+
+.logout {
+    z-index: 9;
+    position: absolute;
+    margin-left: 79%;
+    margin-top: 70px;
+    color: rgba(255, 255, 255, 0.753);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*보겸이*/
+.colorchange {
+    z-index: 9;
+    position: absolute;
+    margin-left: 11%;
+    margin-top: 80px;
+    color: #666666;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.bgmchange {
+    z-index: 9;
+    position: absolute;
+    margin-left: 11%;
+    margin-top: 90px;
+    color: #666666;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.bgmlist {
+    background-color: #f0f0f0ff;
+    position: absolute;
+    height: 260px;
+    width: 300px;
+    border-radius: 20px;
+    margin-left: 11%;
+    margin-top: 150px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    color: #666666;
+    font-size: 19px;
+    font-weight: 300;
+    -ms-overflow-style: none;
+    overflow-y: scroll;
+    line-height: 200%;
+}
+
+.bgmlist::-webkit-scrollbar {
+    display: none;
+}
+
+.check_card {
+    z-index: 9;
+    position: absolute;
+    margin-left: 11%;
+    margin-top: 520px;
+    color: #666666;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.card {
+    z-index: 9;
+    position: absolute;
+    margin-left: 41%;
+    margin-top: 500px;
+}
+
+.imgchange {
+    z-index: 9;
+    position: absolute;
+    margin-left: 11%;
+    margin-top: 140px;
+    color: #666666;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.imgchange_1 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 120px;
+}
+
+.introchange {
+    z-index: 9;
+    position: absolute;
+    margin-left: 11%;
+    margin-top: 420px;
+    color: #666666;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.button {
+    border: #666666;
+    color: #666666;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10%;
+    font-weight: bold;
+}
+
+.b1 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 55%;
+    margin-top: 130px;
+}
+
+.b2 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 68%;
+    margin-top: 130px;
+}
+
+.b3 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 620px;
+}
+
+.b4 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 43%;
+    margin-top: 620px;
+}
+
+.t {
+    z-index: 9;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 410px;
+}
+
+.card1 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 9%;
+    margin-top: 140px;
+}
+
+.card2 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 52%;
+    margin-top: 140px;
+}
+
+.card3 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 9%;
+    margin-top: 470px;
+}
+
+.card4 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 52%;
+    margin-top: 470px;
+}
+
+.box4 {
+    height: 500px;
+    width: 320px;
+    margin-left: 10%;
+    top: 160px;
+    margin-bottom: 30px;
+    z-index: 4;
+    position: absolute;
+    background-color: rgb(241, 241, 241);
+}
+
+.box5 {
+    margin-left: 55%;
+    top: 170px;
+    margin-bottom: 30px;
+    z-index: 4;
+    position: absolute;
+}
+
+.deco1 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 15%;
+    margin-top: 200px;
+}
+
+.deco2 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 33%;
+    margin-top: 180px;
+}
+
+.deco3 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 15%;
+    margin-top: 375px;
+}
+
+.deco4 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 32%;
+    margin-top: 385px;
+}
+
+.deco5 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 15%;
+    margin-top: 530px;
+}
+
+.deco6 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 33%;
+    margin-top: 530px;
+}
+
+.card_background {
+    z-index: 9;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.view_background {
+    z-index: 9;
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.game {
+    position: absolute;
+    margin-left: 40px;
+    margin-top: 130px;
+}
+
+.game_message {
+    position: absolute;
+    margin-left: 240px;
+    margin-top: 70px;
+    color: #666666;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.cardtable {
+    background-color: #f3f3f398;
+    z-index: 8;
+    position: absolute;
+    height: 320px;
+    width: 500px;
+    margin-left: 85px;
+    top: 210px;
+    line-height: 150%;
+    -ms-overflow-style: none;
+    overflow-y: scroll;
+    padding-top: 70px;
+    padding-left: 70px;
+    padding-bottom: 20px;
+    color: #b3b3b3;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.cardtable::-webkit-scrollbar {
+    display: none;
+}
+
+.view1 {
     z-index: 10;
-    position:absolute;
+    position: absolute;
+    margin-left: 150px;
+    margin-top: 180px;
+    color: #666666;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 40px;
+    line-height: 200%;
+    -ms-overflow-style: none;
+    overflow-y: scroll;
+    width: 430px;
+}
+
+.view1::-webkit-scrollbar {
+    display: none;
+}
+
+.list_title {
+    z-index: 9;
+    position: absolute;
+    margin-left: 13%;
+    margin-top: 100px;
+    color: #666666;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.wirte_card {
+    z-index: 10;
+    position: absolute;
+    margin-left: 150px;
+    margin-top: 140px;
+}
+
+.card_title {
+    margin-left: 15px;
+    margin-top: 10px;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card_writer {
+    margin-left: 15px;
+    margin-top: 15px;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card_text {
+    margin-left: 15px;
+    margin-top: 25px;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card_background2 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 80px;
+    margin-top: 80px;
+}
+
+.send_card_button {
+    margin-left: 200px;
+    margin-top: 25px;
+}
+
+.send_card_button2 {
+    margin-left: 130px;
+    margin-top: 15px;
+}
+
+.music_button {
+    position: absolute;
+    left: 40px;
+    top: 660px;
+}
+
+.b5 {
+    z-index: 10;
+    position: absolute;
+    margin-left: 66%;
+    margin-top: 590px;
+}
+
+.button2 {
+    border: #666666;
+    color: #666666;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10%;
+    font-weight: bold;
+}
+
+.mini_game {
+    z-index: 10;
+    position: absolute;
+    margin-left: 50%;
+    margin-top: 0%;
+}
+
+.login-image {
+    z-index: 8;
+    position: absolute;
+    left: 400px;
+}
+
+.login-form {
+    z-index: 10;
+    position: absolute;
     top: 210px;
     left: 520px;
 }
-.login-button{
+
+.login-button {
     height: 30px;
     background-color: #c44545;
     border-radius: 5px;
 }
-.button1{
+
+.button1 {
     height: 30px;
     background-color: #c4454500;
     border: 0px solid rgb(14, 149, 50);
-}   
- .div2 {
-        color: green;
-        border: 3px solid;
-        width: 135px;
-        height: 135px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 60%
-
-}
-.clicked{
-        color: gold;
-}
-.test{
-        z-index: 8; position: absolute; margin-left: 150px; 
-}
-.deco1{z-index:9; position: absolute; margin-left: 13%; margin-top: 180px}
-.deco2{z-index:9; position: absolute; margin-left: 31%; margin-top: 180px}
-.deco3{z-index:9; position: absolute; margin-left: 13%; margin-top: 345px}
-.deco4{z-index:9; position: absolute; margin-left: 31%; margin-top: 345px}
-.deco5{z-index:9; position: absolute; margin-left: 13%; margin-top: 510px}
-.deco6{z-index:9; position: absolute; margin-left: 31%; margin-top: 510px}
-.filechoice{position: absolute; margin-left: 10px; margin-top: 10px}
-.box8{margin-left: 55%; top: 170px; margin-bottom: 30px; z-index: 4; position: absolute; height: 50px;}
-.box9{margin-left: 55%; top: 260px; margin-bottom: 30px; z-index: 4; position: absolute; height: 300px;}
-
-hr { border : 0px; border-top: 5px dashed #b7b7b7; width: 90% }
-
-#input1{ height: 30px; width:370px;}
-#input2{ height: 30px; width:190px;}
-#input3{height: 30px; width:100px; color: #666666d9; font-weight: bold; 
-        background-color: rgba(255, 255, 255, 0.375); border: 0; outline: 0; border-radius: 10px;}
-#input4{
-        height: 35px;
-        width: 250px;
-        background-color: #ddefe3;
-        border: 3px solid rgb(137, 228, 161);
-        border-radius: 20px;
-    }
-#input5{
-        background-color: #f0f0f0ff; border: 0;color:#666666; font-size: 14px; font-weight: 300;
 }
 
-#textarea1 {width: 300px; height: 200px; padding: 10px; box-sizing: border-box; border: solid 2px #666666; 
-            border-radius: 5px; font-size: 18px; resize: both;}
-#textarea2 {width: 300px; height: 400px; padding: 10px; box-sizing: border-box; border: solid 2px #666666; 
-            border-radius: 20px; font-size: 20px; resize: both;}
-#textarea3 {width: 445px; height: 230px; padding: 10px; box-sizing: border-box; border: solid 2px #666666; 
-            border-radius: 5px; font-size: 16px; resize: both;}
-#textarea4 {width: 270px; height: 230px; padding: 10px; box-sizing: border-box; border: solid 2px #666666; 
-            border-radius: 5px; font-size: 13px; resize: both;}
-#textarea5 {width: 445px; height: 160px; padding: 10px; box-sizing: border-box; border: solid 2px #666666; 
-        border-radius: 5px; font-size: 16px; resize: both;}
-#textarea6{width: 300px; height: 70px; padding: 10px; box-sizing: border-box; border: solid 2px #666666; 
-        border-radius: 20px; font-size: 20px; resize: both;}
+.div2 {
+    color: green;
+    border: 3px solid;
+    width: 135px;
+    height: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60%;
+}
 
-#button1 {width: 60px; height:30x;}
-hr { border : 0px; border-top: 5px dashed #b7b7b7; width: 90% }
-a { color: #666666; }
-a:visited { color: #666666; }
-a:hover { color: #666666; }
-a:active { color: #666666; }
+.clicked {
+    color: gold;
+}
+
+.test {
+    z-index: 8;
+    position: absolute;
+    margin-left: 150px;
+}
+
+.deco1 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 13%;
+    margin-top: 180px;
+}
+
+.deco2 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 31%;
+    margin-top: 180px;
+}
+
+.deco3 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 13%;
+    margin-top: 345px;
+}
+
+.deco4 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 31%;
+    margin-top: 345px;
+}
+
+.deco5 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 13%;
+    margin-top: 510px;
+}
+
+.deco6 {
+    z-index: 9;
+    position: absolute;
+    margin-left: 31%;
+    margin-top: 510px;
+}
+
+.filechoice {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.box8 {
+    margin-left: 55%;
+    top: 170px;
+    margin-bottom: 30px;
+    z-index: 4;
+    position: absolute;
+    height: 50px;
+}
+
+.box9 {
+    margin-left: 55%;
+    top: 260px;
+    margin-bottom: 30px;
+    z-index: 4;
+    position: absolute;
+    height: 300px;
+}
+
+hr {
+    border: 0px;
+    border-top: 5px dashed #b7b7b7;
+    width: 90%;
+}
+
+#input1 {
+    height: 30px;
+    width: 370px;
+}
+
+#input2 {
+    height: 30px;
+    width: 190px;
+}
+
+#input3 {
+    height: 30px;
+    width: 100px;
+    color: #666666d9;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.375);
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+}
+
+#input4 {
+    height: 35px;
+    width: 250px;
+    background-color: #ddefe3;
+    border: 3px solid rgb(137, 228, 161);
+    border-radius: 20px;
+}
+
+#input5 {
+    background-color: #f0f0f0ff;
+    border: 0;
+    color: #666666;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+#textarea1 {
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 2px #666666;
+    border-radius: 5px;
+    font-size: 18px;
+    resize: both;
+}
+
+#textarea2 {
+    width: 300px;
+    height: 400px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 2px #666666;
+    border-radius: 20px;
+    font-size: 20px;
+    resize: both;
+}
+
+#textarea3 {
+    width: 445px;
+    height: 230px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 2px #666666;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: both;
+}
+
+#textarea4 {
+    width: 270px;
+    height: 230px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 2px #666666;
+    border-radius: 5px;
+    font-size: 13px;
+    resize: both;
+}
+
+#textarea5 {
+    width: 445px;
+    height: 160px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 2px #666666;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: both;
+}
+
+#textarea6 {
+    width: 300px;
+    height: 70px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 2px #666666;
+    border-radius: 20px;
+    font-size: 20px;
+    resize: both;
+}
+
+#button1 {
+    width: 60px;
+    height: 30x;
+}
+
+a {
+    color: #666666;
+}
+
+a:visited {
+    color: #666666;
+}
+
+a:hover {
+    color: #666666;
+}
+
+a:active {
+    color: #666666;
+}
