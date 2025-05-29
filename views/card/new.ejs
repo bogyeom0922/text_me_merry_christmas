@@ -10,11 +10,11 @@
             <div class="card_title">
                 <label>TO</label>
                 <input type="text" name="to_name" placeholder="받는 사람을 입력하세요" required />
-            </div>
-            <input type="hidden" name="from_name" value="<%= user?.nickname %>" />
-            <input type="hidden" name="selected_card_type" id="selected_card_type" />
-            <div class="card_text">
-                <textarea name="content" placeholder="카드를 작성해보세요 !"></textarea>
+                <input type="hidden" name="from_name" value="<%= user?.nickname %>" />
+                <input type="hidden" name="selected_card_type" id="selected_card_type" />
+                <div class="card_text">
+                    <textarea name="content" placeholder="카드를 작성해보세요 !"></textarea>
+                </div>
             </div>
             <div class="send_card_button">
                 <input type="submit" value="보내기" />
@@ -26,15 +26,24 @@
   const cardRadios = document.querySelectorAll('input[name="card_type"]');
   const hiddenField = document.getElementById('selected_card_type');
 
-  cardRadios.forEach((radio, index) => {
+  cardRadios.forEach((radio) => {
     radio.addEventListener('change', () => {
-      hiddenField.value = radio.value;
+      updateSelection(radio);
     });
 
-    // Optional: allow image click to trigger radio
     radio.nextElementSibling.addEventListener('click', () => {
       radio.checked = true;
-      hiddenField.value = radio.value;
+      updateSelection(radio);
     });
   });
+
+  function updateSelection(selectedRadio) {
+    hiddenField.value = selectedRadio.value;
+
+    document.querySelectorAll('.card_background label').forEach(label => {
+      label.classList.remove('selected');
+    });
+
+    selectedRadio.parentElement.classList.add('selected');
+  }
 </script>

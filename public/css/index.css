@@ -55,7 +55,11 @@ DIV {
 .position3 {
     z-index: 4;
     position: absolute;
-    margin-top: 825px;
+    top: 828px;
+    height: 120px;
+    margin: 0;
+    width: 100%;
+    left: 0px;
 }
 
 .position4 {
@@ -439,34 +443,6 @@ DIV {
     margin-top: 410px;
 }
 
-.card1 {
-    z-index: 9;
-    position: absolute;
-    margin-left: 9%;
-    margin-top: 140px;
-}
-
-.card2 {
-    z-index: 9;
-    position: absolute;
-    margin-left: 52%;
-    margin-top: 140px;
-}
-
-.card3 {
-    z-index: 9;
-    position: absolute;
-    margin-left: 9%;
-    margin-top: 470px;
-}
-
-.card4 {
-    z-index: 9;
-    position: absolute;
-    margin-left: 52%;
-    margin-top: 470px;
-}
-
 .box4 {
     height: 500px;
     width: 320px;
@@ -531,8 +507,19 @@ DIV {
 .card_background {
     z-index: 9;
     position: absolute;
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-left: 5%;
+    margin-top: 50px;
+}
+
+.card_background img {
+    width: 155px;
+    height: 130px;
+    margin-right: 15px;
+}
+
+.card_background label.selected img {
+  border: 4px solid white;
+  border-radius: 8px;
 }
 
 .view_background {
@@ -671,16 +658,46 @@ DIV {
 .wirte_card {
     z-index: 10;
     position: absolute;
-    margin-left: 150px;
-    margin-top: 140px;
+    margin-left: 50px;
+    top: 200px;
 }
 
 .card_title {
     margin-left: 15px;
-    margin-top: 10px;
+    margin-top: 20px;
     color: #666666;
     font-size: 20px;
     font-weight: bold;
+}
+
+.card_title label{
+    margin-left: 15px
+}
+
+.card_title input {
+    border: 2px solid #c4cbb7ff;
+    border-radius: 5px;
+    background: none;
+    color: #555;
+    font-size: 17px;
+    width: 550px;
+    height: 40px;
+    margin-left: 15px;
+    padding-left: 10px;
+    outline: none;
+}
+
+.card_title textarea {
+    border: 2px solid #c4cbb7ff;
+    border-radius: 5px;
+    background: none;
+    color: #555;
+    font-size: 17px;
+    width: 570px;
+    height: 300px;
+    margin-top: 10px;
+    padding: 20px;
+    outline: none;
 }
 
 .card_writer {
@@ -706,14 +723,53 @@ DIV {
     margin-top: 80px;
 }
 
-.send_card_button {
-    margin-left: 200px;
-    margin-top: 25px;
+.send_card_button input{
+    margin-left: 45%;
+    width: 10%;
+    margin-top: 15px;
+    background: none;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
 }
 
 .send_card_button2 {
     margin-left: 130px;
     margin-top: 15px;
+}
+
+.card_list h2{
+    font-size: 30px;
+    color: #555;
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.card_list_ul {
+    list-style: none;
+    font-size: 18px;
+    color: #666;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.card_list_ul li {
+  margin-bottom: 15px;
+}
+
+.card_list_scroll {
+    margin-top: 60px;
+    margin-left: 60px;
+    max-height: 480px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 10px;
+    border: none;
+    width: 80%;
+    scrollbar-color: #c4cbb7ff transparent;
 }
 
 .music_button {
@@ -978,16 +1034,20 @@ hr {
 
 a {
     color: #666666;
+    text-decoration: none;
 }
 
 a:visited {
     color: #666666;
+    text-decoration: none;
 }
 
 a:hover {
     color: #666666;
+    text-decoration: none;
 }
 
 a:active {
     color: #666666;
+    text-decoration: none;
 }
