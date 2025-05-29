@@ -297,6 +297,8 @@ DIV {
     color: rgba(255, 255, 255, 0.753);
     font-size: 20px;
     font-weight: bold;
+    background: none;
+    border: none;
 }
 
 /*보겸이*/
