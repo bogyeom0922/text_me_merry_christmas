@@ -1,25 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const homeController = require('../controllers/homeController');
-
-router.get('/', homeController.renderHomePage);
-
 const Wish = require('../models/Wish');
 
-// MongoDB 기반 index 라우트
-router.get('/index', async (req, res) => {
-  try {
-    const wishes = await Wish.find().sort({ createdAt: -1 }); // 최신순 정렬
-    res.render('index', { data: wishes });
-  } catch (err) {
-    console.error('Index DB 오류:', err);
-    res.status(500).send('DB Error');
-  }
-});
 
-// 카드 종류 선택 페이지
-router.get('/sendcard', (req, res) => {
-    res.render('card/sendcard');
+router.get('/', async (req, res) => {
+  try {
+    const data = await Wish.find();
+    res.render('index', {
+      data,
+      is_logined: req.session.user ? true : false,
+      user: req.session.user || null
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error rendering home page');
+  }
 });
 
 router.get('/game_main', (req, res) => res.render('game/game_main'));
