@@ -1,15 +1,21 @@
-<h2>보낸 카드 목록</h2>
-
-<ul>
-  <% if (data.length === 0) { %>
-    <li>보낸 카드가 없습니다.</li>
-  <% } else { %>
-    <% data.forEach(card => { %>
-      <li>
-        <a href="/card/view/<%= card._id %>">
-          To: <%= card.to_name %> | 내용: <%= card.content %>
-        </a>
-      </li>
-    <% }) %>
-  <% } %>
-</ul>
+<div class="position2 box3">
+    <div class="card_list">
+        <h2>보낸 카드 목록</h2>
+        <div class="card_list_scroll">
+            <ul class="card_list_ul">
+              <% if (data.length === 0) { %>
+                <li>보낸 카드가 없습니다.</li>
+              <% } else { %>
+                <% data.forEach(card => { %>
+                  <li>
+                    <a href="/card/view/<%= card._id %>">
+                        <%= card.to_name %> | <%= card.createdAt.toLocaleString('en-US', { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) %> <br>
+                        <%= card.content %>
+                    </a>
+                  </li>
+                <% }) %>
+              <% } %>
+            </ul>
+        </div>
+    </div>
+</div>
