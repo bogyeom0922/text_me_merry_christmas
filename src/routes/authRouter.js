@@ -83,4 +83,12 @@ router.get('/kakao/callback', async (req, res) => {
     }
 });
 
+// 로그아웃
+router.post('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.clearCookie('connect.sid');
+    res.redirect('/auth/kakao');
+  });
+});
+
 module.exports = router;
