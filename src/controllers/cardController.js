@@ -19,7 +19,7 @@ exports.handleCreateCard = async (req, res) => {
             from_name: user.nickname,
             to_name,
             content,
-            card_type: "1"
+            card_type: req.body.selected_card_type
         });
 
         await newCard.save();
