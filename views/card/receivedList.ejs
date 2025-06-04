@@ -8,7 +8,7 @@
               <% } else { %>
                 <% data.forEach(card => { %>
                   <li>
-                    <a href="/card/view/<%= card._id %>">
+                    <a href="/card/detail/<%= card._id %>">
                       <%= card.from_name %> | <%= card.createdAt.toLocaleString('en-US', { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) %> <br>
                       <%= card.content %>
                     </a>
