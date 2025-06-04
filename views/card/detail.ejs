@@ -14,20 +14,20 @@
 
         <div class="card_detail">
             <% if (data.from_name === user?.nickname) { %>
-              <p><%= data.to_name %></p>
+              <p class="card_name"><%= data.to_name %></p>
             <% } else { %>
-              <p><%= data.from_name %></p>
+              <p class="card_name"><%= data.from_name %></p>
             <% } %>
 
             <% if (data.from_name === user?.nickname && !data.confirmed) { %>
               <!-- 내가 보낸 카드면 수정 가능 -->
                 <form method="post" action="/card/detail/<%= data._id %>">
-                <textarea name="content" rows="5" cols="40"><%= data.content %></textarea><br />
-                <button type="submit">수정하기</button>
+                <textarea name="content" rows="5" cols="40" class="card_content_textarea"><%= data.content %></textarea><br />
+                <button type="submit" class="card_update_button">수정하기</button>
               </form>
             <% } else { %>
               <!-- 받은 카드면 읽기 전용 -->
-              <p><%= data.content %></p>
+              <p class="card_content"><%= data.content %></p>
             <% } %>
         </div>
     </div>
