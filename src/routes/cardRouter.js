@@ -7,6 +7,6 @@ router.get('/new', cardController.renderCreatePage);
 router.post('/', cardController.handleCreateCard);
 router.get('/sentList', cardController.renderSentCardList);
 router.get('/receivedList', cardController.renderReceivedCardList);
-router.get('/view/:id', cardController.renderCardDetail);
+router.get('/detail/:id', cardController.renderCardDetail);
 
 module.exports = router;
