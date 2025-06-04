@@ -772,6 +772,56 @@ DIV {
     scrollbar-color: #c4cbb7ff transparent;
 }
 
+.card_image {
+    position: absolute;
+    top: 130px;
+    left: 9%;
+    width: 86%;
+    height: 70%;
+}
+
+.card_detail {
+    z-index: 999;
+    position: absolute;
+    left: 24%;
+    top: 220px;
+}
+
+.card_name {
+    font-size: 25px;
+    color: #333;
+    font-weight: 600;
+}
+
+.card_content {
+    font-size: 22px;
+    color: #111;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.card_content_textarea {
+    font-size: 20px;
+    color: #111;
+    font-weight: 500;
+    line-height: 1.6;
+    background: none;
+    border: none;
+    width: 80%;
+    height: 200px;
+}
+
+.card_update_button {
+    position: absolute;
+    font-size: 15px;
+    color: #333;
+    font-weight: 600;
+    background: none;
+    border: none;
+    left: 35%;
+    top: 310px;
+}
+
 .music_button {
     position: absolute;
     left: 40px;
