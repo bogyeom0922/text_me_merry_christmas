@@ -1,15 +1,17 @@
-<h2>카드 상세 보기</h2>
+<div class="position2 box3">
+    <h2>카드 상세 보기</h2>
 
-<p><strong>보낸 사람:</strong> <%= data.from_name %></p>
-<p><strong>받는 사람:</strong> <%= data.to_name %></p>
+    <p><strong>보낸 사람:</strong> <%= data.from_name %></p>
+    <p><strong>받는 사람:</strong> <%= data.to_name %></p>
 
-<% if (data.from_name === user?.nickname) { %>
-  <!-- 내가 보낸 카드면 수정 가능 -->
-  <form method="post">
-    <textarea name="content" rows="5" cols="40"><%= data.content %></textarea><br />
-    <button type="submit">수정하기</button>
-  </form>
-<% } else { %>
-  <!-- 받은 카드면 읽기 전용 -->
-  <p><strong>내용:</strong> <%= data.content %></p>
-<% } %>
+    <% if (data.from_name === user?.nickname) { %>
+      <!-- 내가 보낸 카드면 수정 가능 -->
+        <form method="post" action="/card/detail/<%= data._id %>">
+        <textarea name="content" rows="5" cols="40"><%= data.content %></textarea><br />
+        <button type="submit">수정하기</button>
+      </form>
+    <% } else { %>
+      <!-- 받은 카드면 읽기 전용 -->
+      <p><strong>내용:</strong> <%= data.content %></p>
+    <% } %>
+</div>

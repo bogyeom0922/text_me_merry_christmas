@@ -43,6 +43,32 @@ exports.renderReceivedCardList = async (req, res) => {
 };
 
 exports.renderCardDetail = async (req, res) => {
+  try {
     const card = await Card.findById(req.params.id);
-    res.render('card/detail', { data: card });
+    const user = req.session.user;
+
+    if (!card) return res.status(404).send('Card not found');
+
+    res.render('card/detail', {
+      data: card,
+      user: user,
+      is_logined: !!user
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error loading card detail');
+  }
+};
+
+exports.updateCard = async (req, res) => {
+    const { id } = req.params;
+    const { content } = req.body;
+
+    try {
+        await Card.findByIdAndUpdate(id, { content });
+        res.redirect(`/card/detail/${id}`);
+    } catch (err) {
+        console.error('카드 수정 오류:', err);
+        res.status(500).send('Error updating card');
+    }
 };
