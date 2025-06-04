@@ -59,3 +59,16 @@ exports.renderCardDetail = async (req, res) => {
     res.status(500).send('Error loading card detail');
   }
 };
+
+exports.updateCard = async (req, res) => {
+    const { id } = req.params;
+    const { content } = req.body;
+
+    try {
+        await Card.findByIdAndUpdate(id, { content });
+        res.redirect(`/card/detail/${id}`);
+    } catch (err) {
+        console.error('카드 수정 오류:', err);
+        res.status(500).send('Error updating card');
+    }
+};
