@@ -49,6 +49,11 @@ exports.renderCardDetail = async (req, res) => {
 
     if (!card) return res.status(404).send('Card not found');
 
+    if (user && card.to_name === user.nickname && !card.confirmed) {
+      card.confirmed = true;
+      await card.save();
+    }
+
     res.render('card/detail', {
       data: card,
       user: user,
@@ -65,8 +70,16 @@ exports.updateCard = async (req, res) => {
     const { content } = req.body;
 
     try {
-        await Card.findByIdAndUpdate(id, { content });
-        res.redirect(`/card/detail/${id}`);
+        const card = await Card.findById(id);
+        const user = req.session.user;
+
+        if (card.from_name === user.nickname && !card.confirmed) {
+            card.content = content;
+            await card.save();
+            res.redirect(`/card/detail/${id}`);
+        } else {
+            res.status(403).send('수정 권한이 없습니다.');
+        }
     } catch (err) {
         console.error('카드 수정 오류:', err);
         res.status(500).send('Error updating card');
