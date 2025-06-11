@@ -1,9 +1,12 @@
+const Wish = require('../models/wish');
+console.log('✅ Wish 모델 로드:', Wish);
+
 exports.renderHomePage = async (req, res) => {
     try {
         const data = await Wish.find(); // 또는 원래 가져오던 데이터
-        res.render('index', {
+        res.render('user/login', {
             data,
-            is_logined: req.session.user ? true : false, // ✅ 여기에 추가
+            is_logined: req.session.user ? true : false,
             user: req.session.user || null
         });
     } catch (error) {

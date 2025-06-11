@@ -1,7 +1,7 @@
 const app = require('./app');
 const connectDB = require('./src/models/db'); // MongoDB 연결 함수 import
 
-const PORT = 8080;
+const PORT = 8080;	
 
 connectDB()
     .then(() => {

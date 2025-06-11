@@ -27,7 +27,6 @@ app.use(session({
 // 기본 미들웨어
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -40,6 +39,9 @@ app.use('/auth', authRouter);
 app.use('/', homeRouter);
 app.use('/card', cardRouter);
 app.use('/wish', wishRouter);
+app.use('/auth', authRouter);
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(errorHandler);
 
