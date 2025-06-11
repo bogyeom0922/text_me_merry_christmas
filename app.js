@@ -24,6 +24,13 @@ app.use(session({
     cookie: { secure: false } // HTTPS 환경이면 true
 }));
 
+app.use((req, res, next) => {
+    if (req.session && req.session.user) {
+        req.user = req.session.user;
+    }
+    next();
+});
+
 // 기본 미들웨어
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));

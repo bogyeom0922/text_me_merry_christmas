@@ -1,5 +1,7 @@
 <div class="logo"><img src="/image/logo.png"></div>
-<div class="logout">LOG OUT</div>
+<form id="logout-form">
+    <button class="logout" type="submit">LOG OUT</button>
+</form>
 <div class="position1 box1"></div>
 <div class="position2 box2">
     <div class="profile_background"></div>
@@ -30,7 +32,42 @@
         </table>
     </div>
     <div class="music_button">
-                        <input id="input3" type="button" onclick="audio.play();" value="BGM 재생"> &nbsp;
-                        <input id="input3" type="button" onclick="audio.pause();" value="일시정지">
-                    </div>
+        <input id="input3" type="button" onclick="audio.play();" value="BGM 재생"> &nbsp;
+        <input id="input3" type="button" onclick="audio.pause();" value="일시정지">
+    </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.querySelector('.logout');
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        try {
+          // 1. 클라이언트 토큰 로그아웃
+          if (window.Kakao && Kakao.Auth) {
+            await Kakao.Auth.logout(); // async/await 방식도 가능
+            console.log('Kakao 로그아웃 완료');
+          }
+
+          // 2. 서버 로그아웃
+          const response = await fetch('/auth/logout', {
+            method: 'POST',
+            credentials: 'include'
+          });
+
+          if (response.redirected) {
+            location.href = response.url;
+          } else {
+            alert('로그아웃 실패');
+          }
+        } catch (err) {
+          console.error('로그아웃 중 오류:', err);
+          alert('로그아웃 처리 중 문제가 발생했습니다.');
+        }
+      });
+    }
+  });
+</script>

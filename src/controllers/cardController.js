@@ -1,68 +1,87 @@
 const Card = require('../models/card');
 
-// 카드 작성 페이지 렌더링
-exports.renderCardPage = (req, res) => {
-    const { type } = req.params;
-    res.render(`card/card${type}`);
+exports.renderCardMenu = (req, res) => {
+    res.render('card/menu');
 };
 
-// 카드 생성 처리
+exports.renderCreatePage = (req, res) => {
+    const user = req.user || req.session.user;
+    res.render('card/new', { user });
+};
+
 exports.handleCreateCard = async (req, res) => {
-    const { from_name, to_name, content } = req.body;
+    const user = req.user || req.session.user;
+    const { to_name, content } = req.body;
     const cardType = req.params.type;
 
     try {
         const newCard = new Card({
-            from_name,
+            from_name: user.nickname,
             to_name,
             content,
-            card_type: cardType
+            card_type: req.body.selected_card_type
         });
 
         await newCard.save();
-        res.redirect('/index');
+        res.redirect('/card');
     } catch (error) {
         console.error('카드 생성 오류:', error);
         res.status(500).send('Error creating card');
     }
 };
 
-// 카드 리스트 보기
-exports.listCards = async (req, res) => {
-    try {
-        const cards = await Card.find();
-        res.render('list', { data: cards });
-    } catch (error) {
-        console.error('카드 리스트 오류:', error);
-        res.status(500).send('Error fetching card list');
-    }
+exports.renderSentCardList = async (req, res) => {
+    const user = req.user;
+    const cards = await Card.find({ from_name: user.nickname });
+    res.render('card/sentList', { data: cards });
 };
 
-// 카드 상세 보기
-exports.viewCard = async (req, res) => {
-    const { from_name } = req.params;
-
-    try {
-        const card = await Card.findOne({ from_name });
-
-        if (!card) return res.status(404).send('Card not found');
-        res.render('view', { data: card });
-    } catch (error) {
-        console.error('카드 조회 오류:', error);
-        res.status(500).send('Error fetching card');
-    }
+exports.renderReceivedCardList = async (req, res) => {
+    const user = req.user;
+    const cards = await Card.find({ to_name: user.nickname });
+    res.render('card/receivedList', { data: cards });
 };
 
-// 카드 내용 수정
+exports.renderCardDetail = async (req, res) => {
+  try {
+    const card = await Card.findById(req.params.id);
+    const user = req.session.user;
+
+    if (!card) return res.status(404).send('Card not found');
+
+    if (user && card.to_name === user.nickname && !card.confirmed) {
+      card.confirmed = true;
+      await card.save();
+    }
+
+    res.render('card/detail', {
+      data: card,
+      user: user,
+      is_logined: !!user
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error loading card detail');
+  }
+};
+
 exports.updateCard = async (req, res) => {
-    const { from_name } = req.params;
+    const { id } = req.params;
     const { content } = req.body;
 
     try {
-        await Card.findOneAndUpdate({ from_name }, { content });
-        res.redirect('/');
-    } catch (error) {
-        console.error('카드 수정 오류:', error);
+        const card = await Card.findById(id);
+        const user = req.session.user;
+
+        if (card.from_name === user.nickname && !card.confirmed) {
+            card.content = content;
+            await card.save();
+            res.redirect(`/card/detail/${id}`);
+        } else {
+            res.status(403).send('수정 권한이 없습니다.');
+        }
+    } catch (err) {
+        console.error('카드 수정 오류:', err);
         res.status(500).send('Error updating card');
     }
 };

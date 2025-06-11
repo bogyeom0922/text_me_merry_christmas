@@ -1,0 +1,49 @@
+<div class="position2 box3">
+    <form method="post" action="/card">
+        <div class="card_background">
+            <label><input type="radio" name="card_type" value="1" hidden><img src="/image/christmascard_1.png" width="20%"></label>
+            <label><input type="radio" name="card_type" value="2" hidden><img src="/image/christmascard_2.png" width="20%"></label>
+            <label><input type="radio" name="card_type" value="3" hidden><img src="/image/christmascard_3.png" width="20%"></label>
+            <label><input type="radio" name="card_type" value="4" hidden><img src="/image/christmascard_4.png" width="20%"></label>
+        </div>
+        <div class="wirte_card">
+            <div class="card_title">
+                <label>TO</label>
+                <input type="text" name="to_name" placeholder="받는 사람을 입력하세요" required />
+                <input type="hidden" name="from_name" value="<%= user?.nickname %>" />
+                <input type="hidden" name="selected_card_type" id="selected_card_type" />
+                <div class="card_text">
+                    <textarea name="content" placeholder="카드를 작성해보세요 !"></textarea>
+                </div>
+            </div>
+            <div class="send_card_button">
+                <input type="submit" value="보내기" />
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+  const cardRadios = document.querySelectorAll('input[name="card_type"]');
+  const hiddenField = document.getElementById('selected_card_type');
+
+  cardRadios.forEach((radio) => {
+    radio.addEventListener('change', () => {
+      updateSelection(radio);
+    });
+
+    radio.nextElementSibling.addEventListener('click', () => {
+      radio.checked = true;
+      updateSelection(radio);
+    });
+  });
+
+  function updateSelection(selectedRadio) {
+    hiddenField.value = selectedRadio.value;
+
+    document.querySelectorAll('.card_background label').forEach(label => {
+      label.classList.remove('selected');
+    });
+
+    selectedRadio.parentElement.classList.add('selected');
+  }
+</script>
