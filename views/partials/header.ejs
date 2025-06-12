@@ -53,19 +53,10 @@
           }
 
           // 2. 서버 로그아웃
-          const response = await fetch('/auth/logout', {
-            method: 'POST',
-            credentials: 'include'
-          });
-
-          if (response.redirected) {
-            location.href = response.url;
-          } else {
-            alert('로그아웃 실패');
-          }
-        } catch (err) {
-          console.error('로그아웃 중 오류:', err);
-          alert('로그아웃 처리 중 문제가 발생했습니다.');
+		  window.location.href = '/auth/logout';
+		          } catch (err) {
+		            console.error('로그아웃 중 오류:', err);
+		            alert('로그아웃 처리 중 문제가 발생했습니다.');
         }
       });
     }
