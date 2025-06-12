@@ -1,20 +1,44 @@
 <!--메인페이지-->
-        <div class="position2 box3">
-            <form action="/create" method="post">
+<div class="position2 box3">
+  <form action="/wish/create" method="POST">
+    <div class="colorchange">장식을 고르고 소원을 등록해보세요 !</div>
+    <div class="box4"></div>
 
-            <div class="colorchange">장식을 고르고 소원을 등록해보세요 !</div>
-            <div class="box4"></div>
+    <!-- 장식 이미지 버튼 -->
+	<!-- 장식 이미지 선택 -->
+	<div class="deco-wrap">
+		<label class="deco1"> <input type="radio" name="deco_type" value="1" hidden><img src="/image/treedeco_1.png" width="40%"></label>
+	  <label class="deco2"><input type="radio" name="deco_type" value="2" hidden><img src="/image/treedeco_2.png" width="40%"></label>
+	  <label class="deco3"><input type="radio" name="deco_type" value="3" hidden><img src="/image/treedeco_3.png" width="40%"></label>
+	  <label class="deco4"><input type="radio" name="deco_type" value="4" hidden> <img src="/image/treedeco_4.png" width="40%"></label>
+	  <label class="deco5"><input type="radio" name="deco_type" value="5" hidden> <img src="/image/treedeco_5.png" width="40%"></label>
+	  <label class="deco6"> <input type="radio" name="deco_type" value="6" hidden><img src="/image/treedeco_6.png" width="40%"></label>
+	</div>
+	
+	<!--
+		<div class="deco1"><button type="button" class="btn_image div2" onclick="selectCardType('deco1')"><img src="/image/treedeco_1.png" width="70px"></button></div>
+		  <div class="deco2"><button type="button" class="btn_image div2" onclick="selectCardType('deco2')"><img src="/image/treedeco_2.png" width="70px"></button></div>
+		  <div class="deco3"><button type="button" class="btn_image div2" onclick="selectCardType('deco3')"><img src="/image/treedeco_3.png" width="70px"></button></div>
+		  <div class="deco4"><button type="button" class="btn_image div2" onclick="selectCardType('deco4')"><img src="/image/treedeco_4.png" width="70px"></button></div>
+		  <div class="deco5"><button type="button" class="btn_image div2" onclick="selectCardType('deco5')"><img src="/image/treedeco_5.png" width="70px"></button></div>
+		  <div class="deco6"><button type="button" class="btn_image div2" onclick="selectCardType('deco6')"><img src="/image/treedeco_6.png" width="70px"></button></div>
 
-            <div class="deco1"><button type="button" class="btn_image div2" id="treedeco_1" onclick="imageurl(1)"><img src="/image/treedeco_1.png" width="70px"></button></div>
-            <div class="deco2"><button type="button" class="btn_image div2" id="treedeco_2" onclick="imageurl(2)"><img src="/image/treedeco_2.png" width="70px"></button></div>
-            <div class="deco3"><button type="button" class="btn_image div2" id="treedeco_3" onclick="imageurl(3)"><img src="/image/treedeco_3.png" width="70px"></button></div>
-            <div class="deco4"><button type="button" class="btn_image div2" id="treedeco_4" onclick="imageurl(4)"><img src="/image/treedeco_4.png" width="70px"></button></div>
-            <div class="deco5"><button type="button" class="btn_image div2" id="treedeco_5" onclick="imageurl(5)"><img src="/image/treedeco_5.png" width="70px"></button></div>
-            <div class="deco6"><button type="button" class="btn_image div2" id="treedeco_6" onclick="imageurl(6)"><img src="/image/treedeco_6.png" width=" 70px"></button></div>
+	-->	     
+  
+    <!-- 선택된 이미지 값 전달용 hidden input -->
+    <input type="hidden" name="card_type" id="card_type" value="">
 
-            <div class="box8"><input id="textarea6" rows="intro" cols="60" rows="5" name="name" placeholder="익명 이름 쓰기"></textarea></div>
-            <div class="box9"><input id="textarea2" rows="intro" cols="60" rows="5" name="wish_contents" placeholder="소원 쓰기"></textarea></div>
+    <!-- 입력 필드 -->
+    <div class="box8"><input type="text" id="textarea6" name="nickname" placeholder="익명 이름 쓰기" required /></div>
+    <div class="box9"><textarea id="textarea2" name="wish_contents" placeholder="소원 쓰기" required></textarea></div>
 
-            <div class="b5"><button type="submit" class="button2" id="hungry" value="" name="image">등록하기</div>
-            </form>
-        </div>
+    <!-- 제출 버튼 -->
+    <div class="b5"><button type="submit" class="button2">등록하기</button></div>
+  </form>
+</div>
+
+<script>
+  function selectCardType(type) {
+    document.getElementById('card_type').value = type;
+  }
+</script>
